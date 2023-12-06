@@ -17,18 +17,30 @@ public:
 	void start_window();
 	void process_input();
 
-	// Actual objects for whatever project or tutorial we are doing. Should probably change depending on
+	// Do things like position objects here
+	void app_logic();
+	void draw();
+
+	// Actual objects for whatever project or tutorial we are doing. This will change depending on
 	// whatever we are doing.
-	void init_some_object();
+	void init_cube();
+	void init_light_cube();
 
 private:
 	// Window affairs
 	unsigned int SCR_WIDTH = 800;
 	unsigned int SCR_HEIGHT = 600;
 	GLFWwindow *window = nullptr;
+	Camera *c = nullptr;
 
 	// Project specific stuff	
+	unsigned int cube_vao;
+	unsigned int cube_vbo;
+	Shader *default_shader;
 
+	unsigned int light_vao;
+	unsigned int light_vbo;
+	Shader *light_shader;
 
 };
 

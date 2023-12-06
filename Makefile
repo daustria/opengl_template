@@ -1,7 +1,7 @@
 C = gcc
 CXX = g++
 
-INCLUDES = -I$(glfw_inc) -I$(glad_inc)
+INCLUDES = -I$(glfw_inc) -I$(glad_inc) -I$(glm)
 LIBRARIES = -L$(glfw_lib) 
 
 glfw = c:/Users/Dominic/dev/opengl/glfw-3.3.8.bin.WIN64
@@ -10,6 +10,8 @@ glfw = c:/Users/Dominic/dev/opengl/glfw-3.3.8.bin.WIN64
 
 glad = c:/users/Dominic/dev/opengl/glad
 	glad_inc = $(glad)/include
+
+glm = c:/users/Dominic/dev/opengl/glm
 
 CFLAGS = -Wall -ggdb -O3 $(INCLUDES)
 CXXFLAGS = -Wall -ggdb -O3 $(INCLUDES)

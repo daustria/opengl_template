@@ -5,19 +5,33 @@
 #include "camera.h"
 #include "shader.h"
 
-void framebuffer_size_callback(GLFWwindow *, int width, int height);
+//void framebuffer_size_callback(GLFWwindow*, int width, int height);
 // Should probably make a singleton, since I plan to declare this as a global variable.
 // But whatever
 class SceneManager
 {
-	friend void framebuffer_size_callback(GLFWwindow *, int width, int height);
 public:
 	// Window affairs
 	void initialize();
 	void start_window();
-	void process_input();
 
-	// Do things like position objects here
+private:
+
+	// Window affairs
+	void process_input(float delta_time);
+
+	static unsigned int scr_width;
+	static unsigned int scr_height;
+	static GLFWwindow* window;
+	static Camera* camera;
+
+	// Functions for processing input. We register these with GLFW.
+	static void framebuffer_size_callback(GLFWwindow*, int width, int height);
+	static void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
+	static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+	void register_callbacks();
+
+	// update and draw the objects in our scene
 	void app_logic();
 	void draw();
 
@@ -26,22 +40,50 @@ public:
 	void init_cube();
 	void init_light_cube();
 
-private:
-	// Window affairs
-	unsigned int SCR_WIDTH = 800;
-	unsigned int SCR_HEIGHT = 600;
-	GLFWwindow *window = nullptr;
-	Camera *c = nullptr;
+	unsigned int cube_vertices = 36;
+	unsigned int cube_vao = 0;
+	unsigned int cube_vbo = 0;
+	Shader* default_shader = nullptr;
 
-	// Project specific stuff	
-	unsigned int cube_vao;
-	unsigned int cube_vbo;
-	Shader *default_shader;
-
-	unsigned int light_vao;
-	unsigned int light_vbo;
-	Shader *light_shader;
-
+	unsigned int light_vao = 0;
+	unsigned int light_vbo = 0;
+	Shader* light_shader = nullptr;
 };
 
+#define CUBE_VERTEX_DATA -0.5f, -0.5f, -0.5f,\
+0.5f, -0.5f, -0.5f,\
+0.5f, 0.5f, -0.5f,\
+0.5f, 0.5f, -0.5f,\
+-0.5f, 0.5f, -0.5f,\
+-0.5f, -0.5f, -0.5f,\
+-0.5f, -0.5f, 0.5f,\
+0.5f, -0.5f, 0.5f,\
+0.5f, 0.5f, 0.5f,\
+0.5f, 0.5f, 0.5f,\
+-0.5f, 0.5f, 0.5f,\
+-0.5f, -0.5f, 0.5f,\
+-0.5f, 0.5f, 0.5f,\
+-0.5f, 0.5f, -0.5f,\
+-0.5f, -0.5f, -0.5f,\
+-0.5f, -0.5f, -0.5f,\
+-0.5f, -0.5f, 0.5f,\
+-0.5f, 0.5f, 0.5f,\
+0.5f, 0.5f, 0.5f,\
+0.5f, 0.5f, -0.5f,\
+0.5f, -0.5f, -0.5f,\
+0.5f, -0.5f, -0.5f,\
+0.5f, -0.5f, 0.5f,\
+0.5f, 0.5f, 0.5f,\
+-0.5f, -0.5f, -0.5f,\
+0.5f, -0.5f, -0.5f,\
+0.5f, -0.5f, 0.5f,\
+0.5f, -0.5f, 0.5f,\
+-0.5f, -0.5f, 0.5f,\
+-0.5f, -0.5f, -0.5f,\
+-0.5f, 0.5f, -0.5f,\
+0.5f, 0.5f, -0.5f,\
+0.5f, 0.5f, 0.5f,\
+0.5f, 0.5f, 0.5f,\
+-0.5f, 0.5f, 0.5f,\
+-0.5f, 0.5f, -0.5f
 #endif // SCENE_MANAGER_H

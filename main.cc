@@ -1,13 +1,13 @@
 #include <cstdio>
 #include <iostream>
+#include "windowmanager.h"
 #include "scenemanager.h"
 
-SceneManager manager;
 
 int main() 
 {
-	manager.initialize();
-	manager.start_window();
+	WindowManager* manager = new SceneManager();
+	manager->start_window();
 	return 0;
 }
 

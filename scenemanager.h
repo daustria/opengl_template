@@ -2,39 +2,25 @@
 #define SCENE_MANAGER_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "windowmanager.h"
 #include "camera.h"
 #include "shader.h"
 
-//void framebuffer_size_callback(GLFWwindow*, int width, int height);
-// Should probably make a singleton, since I plan to declare this as a global variable.
-// But whatever
-class SceneManager
+class SceneManager : public WindowManager
 {
 public:
-	// Window affairs
-	void initialize();
-	void start_window();
+
+	virtual void initialize() override;
+	// stuff i can implement if i want
+	//virtual void process_input(float delta_time) override;
+	//virtual void mouse_event(double xPosIn, double yPosIn) override;
+	//virtual void scroll_callback(double xoffset, double yoffset) override;
+	
+	// Drawing stuff
+	virtual void app_logic() override;
+	virtual void draw() override;
 
 private:
-
-	// Window affairs
-	void process_input(float delta_time);
-
-	static unsigned int scr_width;
-	static unsigned int scr_height;
-	static GLFWwindow* window;
-	static Camera* camera;
-
-	// Functions for processing input. We register these with GLFW.
-	static void framebuffer_size_callback(GLFWwindow*, int width, int height);
-	static void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
-	static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-	void register_callbacks();
-
-	// update and draw the objects in our scene
-	void app_logic();
-	void draw();
-
 	// Actual objects for whatever project or tutorial we are doing. This will change depending on
 	// whatever we are doing.
 	void init_cube();

@@ -3,19 +3,17 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "windowmanager.h"
-#include "camera.h"
 #include "shader.h"
 
 class SceneManager : public WindowManager
 {
 public:
-
 	virtual void initialize() override;
 	// stuff i can implement if i want
 	//virtual void process_input(float delta_time) override;
 	//virtual void mouse_event(double xPosIn, double yPosIn) override;
 	//virtual void scroll_callback(double xoffset, double yoffset) override;
-	
+
 	// Drawing stuff
 	virtual void app_logic() override;
 	virtual void draw() override;

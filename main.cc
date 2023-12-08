@@ -3,7 +3,6 @@
 #include "windowmanager.h"
 #include "scenemanager.h"
 
-
 int main() 
 {
 	WindowManager* manager = new SceneManager();

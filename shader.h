@@ -11,7 +11,7 @@
 #include <sstream>
 #include <iostream>
 
-
+// This is just straight from learnopengl.com 
 class Shader
 {
 public:
